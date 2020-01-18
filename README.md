@@ -2,7 +2,7 @@
 
 This library uses Trezor's BIP39 [python-mnemonic](https://github.com/trezor/python-mnemonic) and SLIP39 [python-shamir-mnemonic](https://github.com/trezor/python-shamir-mnemonic) libraries to perform [Shamir's Secret Sharing](https://en.wikipedia.org/wiki/Shamir's_Secret_Sharing) on a BIP39 passphrase.
 
-This is untested software based on software that remains under review. Use at your own risk, and don't use it to protect money!
+⚠️ **This is untested software based on software that remains under review. Use at your own risk, and don't use it to protect money!** ⚠️
 
 ## Usage
 
