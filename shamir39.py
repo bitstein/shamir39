@@ -61,8 +61,9 @@ def combine_output(seed, phrase):
 def print_seed(seed):
     print()
     print('\n======================================')
-    print(f'SEED: {seed.decode()}')
+    print(f'SEED: {seed.hex()}')
     print('======================================')
+    print()
 
 
 def split_mnemonic(m, n):
@@ -75,6 +76,7 @@ def split_mnemonic(m, n):
 
     seed = phrase_to_seed(phrase)
 
+    print_seed(seed)
     print('\nGenerating shares...')
     mnemonics = shamir_mnemonic.generate_mnemonics(1, [(m, n)], seed)[0]
 
