@@ -26,12 +26,11 @@ def phrase_to_seed(phrase):
     except ValueError as e:
         print(f'Error: {e}', file=sys.stderr)
         sys.exit(2)
-    return binascii.hexlify(entropy)
+    return entropy
 
 
 def seed_to_phrase(seed):
-    entropy = binascii.unhexlify(seed)
-    return MN.to_mnemonic(entropy)
+    return MN.to_mnemonic(seed)
 
 
 def combine_mnemonics(m):
@@ -41,14 +40,19 @@ def combine_mnemonics(m):
         share = input(f'Enter mnemonic share #{i+1}:\n').strip()
         print('=========================')
         shares.append(share)
-    seed = shamir_mnemonic.combine_mnemonics(shares)
+    try:
+        seed = shamir_mnemonic.combine_mnemonics(shares)
+    except shamir_mnemonic.MnemonicError as e:
+        print()
+        print(e, file=sys.stderr)
+        sys.exit(2)
     phrase = seed_to_phrase(seed)
     return seed, phrase
 
 
 def combine_output(seed, phrase):
     print()
-    print(f'SEED: {seed.decode()}')
+    print(f'SEED: {seed.hex()}')
     print()
     print(f'BIP39 PASSPHRASE: {phrase}')
     print()
